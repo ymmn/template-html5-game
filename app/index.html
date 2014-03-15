@@ -28,11 +28,11 @@
     <!-- Add your site or application content here -->
     <div class="container">
       <div class="row">
-        <div class="col-xs-4">
+        <div class="col-xs-2">
           <button id="mute" class="btn btn-large">Mute Sound</button>
         </div>
         <div class="col-xs-4">
-          <canvas id="gameCanvas" width="470" height="600"></canvas>
+          <canvas id="gameCanvas" width="900" height="600"></canvas>
         </div>
     </div>
 
@@ -60,7 +60,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <script src="scripts/KeyEvent.js"></script>
+    <script src="scripts/KeyEvent.js"></script>
 		<script src="bower_components/easeljs/lib/easeljs-NEXT.min.js"></script>
 		<script src="bower_components/createjs-soundjs/lib/soundjs-NEXT.min.js"></script>
 		<script src="bower_components/createjs-preloadjs/lib/preloadjs-NEXT.min.js"></script>
@@ -68,5 +68,10 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
+        <script src="scripts/gamescreen.js"></script>
+        <script src="scripts/gamemenu.js"></script>
+        <script src="scripts/playscreen.js"></script>
+        <script src="scripts/instructionsmenu.js"></script>
+        <script src="scripts/startmenu.js"></script>
 </body>
 </html>
