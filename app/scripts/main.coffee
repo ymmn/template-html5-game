@@ -15,16 +15,11 @@ class window.Game
         $("#mute").html "Mute Sound"
 
 
-  _keyHandler = (e, isPressed, keyPressedTxt) ->
+  _keyHandler = (e, isPressed) ->
     # prevent scrolling 
     e.preventDefault()
-    switch e.keyCode
-      when KeyEvent.LEFT then @playScreen.keyPressedTxt.text = "LEFT"
-      when KeyEvent.RIGHT then @playScreen.keyPressedTxt.text = "RIGHT"
-      when KeyEvent.DOWN then @playScreen.keyPressedTxt.text = "DOWN"
-      when KeyEvent.UP then @playScreen.keyPressedTxt.text = "UP"
-      else 
-        @playScreen.keyPressedTxt.text = "Keycode #{e.keyCode} down: #{isPressed}"
+    @playScreen.keyHandler e, isPressed
+
 
   _onDoneLoadingResources = (loadingProgressTxt) ->
     # start the music
@@ -65,7 +60,15 @@ class window.Game
 
 
   ################## PUBLIC METHODS ##################
+  constructor: () ->
+    # get a reference to the canvas we'll be working with:
+    @canvas = document.getElementById "gameCanvas"
+
+    @CANVAS_WIDTH = @canvas.width
+    @CANVAS_HEIGHT = @canvas.height
+
   switchToPlayScreen: () ->
+    @playScreen.initGameState()
     _switchScreenTo.call @, @playScreen
 
   switchToStartMenuScreen: () ->
@@ -76,14 +79,10 @@ class window.Game
 
   init: () ->
 
-    # get a reference to the canvas we'll be working with:
-    canvas = document.getElementById "gameCanvas"
+    canvas = @canvas
 
     # create a stage object to work with the canvas. This is the top level node in the display list:
     @stage = new createjs.Stage canvas
-
-    @CANVAS_WIDTH = canvas.width
-    @CANVAS_HEIGHT = canvas.height
 
     # start game timer   
     if not createjs.Ticker.hasEventListener "tick"
@@ -117,4 +116,3 @@ class window.Game
     @mute = false
 
 window.game = new Game()
-game.init()

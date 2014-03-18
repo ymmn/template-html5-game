@@ -11,6 +11,7 @@ class window.GameMenu extends GameScreen
 
       @container = new createjs.Container()
       rect = new createjs.Shape()
+
       # make rectangle draw about center
       rect.regX = btnWidth / 2
       rect.regY = btnHeight / 2
@@ -25,13 +26,13 @@ class window.GameMenu extends GameScreen
       @container.addChild txt
 
       @container.addEventListener "click", onclick
-  # end class RoundedButton
 
 
   createButton: (btnProperty) ->
     return new RoundedButton btnProperty.text, btnProperty.x, btnProperty.y, btnProperty.onclick
 
-  createSolidBackground: (color) ->
+  createSolidBackground: (color, alpha) ->
     background = new createjs.Shape()
     background.graphics.beginFill(color).drawRect 0, 0, game.CANVAS_WIDTH, game.CANVAS_HEIGHT
+    background.alpha = alpha if alpha
     return background
